@@ -1,9 +1,15 @@
+
 package com.company;
+
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("Hello OpenClassrooms");
+        Order order = new Order();
+        order.displayAvailableMenu();
+        Scanner sc = new Scanner(System.in);
+        int nb = sc.nextInt();
+        order.displaySelectedMenu(nb);
     }
 }
