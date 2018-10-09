@@ -6,6 +6,19 @@ import java.util.Scanner;
 // Le nom du fichier (.java) doit être identique à celui de cette class
 public class Order {
 
+    // S'occupe de demander le menu à l'utilisateur
+    public void runMenu() {
+        // vu que nous sommes déjà dans la class Order this permet d'utiliser l'objet directement sans devoir créer une nouvelle variable avec new Order()
+        this.displayAvailableMenu();
+        // Même principe qu'au dessus
+        // System.in permets de récupérer la saisie utilisateur
+        Scanner sc = new Scanner(System.in);
+        // La méthode nextInt() permets de demander à l'utilisateur un entier
+        int nb = sc.nextInt();
+        // Et là on appelle la méthode displaySelectedMenu() et on donne en argument la valeur de la variable saisie par  l'utilisateur
+        this.displaySelectedMenu(nb);
+    }
+
     // Les variables des différents menu, je les déclare ici pour que displaySelectedMenu() puisse les utiliser
     String menu1 = "Poulet";
     String menu2 = "Boeuf";
@@ -54,16 +67,40 @@ public class Order {
 
     }
 
-    // S'occupe de demander le menu à l'utilisateur
-    public void runMenu() {
-        // vu que nous sommes déjà dans la class Order this permet d'utiliser l'objet directement sans devoir créer une nouvelle variable avec new Order()
-        this.displayAvailableMenu();
-        // Même principe qu'au dessus
-        // System.in permets de récupérer la saisie utilisateur
-        Scanner sc = new Scanner(System.in);
-        // La méthode nextInt() permets de demander à l'utilisateur un entier
-        int nb = sc.nextInt();
-        // Et là on appelle la méthode displaySelectedMenu() et on donne en argument la valeur de la variable saisie par  l'utilisateur
-        this.displaySelectedMenu(nb);
+    // Affiche les accompagnements choisis
+    // nbSide comme nbMenu permets de choisir l'accompagnement
+    // allSidesEnable lui indique selon le menu si il est possible de choisir entre tous les accompagnements
+    // si true = vegetables, frites and rice
+    // si false = rice or not
+    public void displaySelectedSide(int nbSide, boolean allSidesEnable) {
+
+        if (allSidesEnable) {
+            switch (nbSide){
+                case 1:
+                    System.out.println("Vous avez choisi comme accompagnement légumes frais");
+                    break;
+                case 2:
+                    System.out.println("Vous avez choisi comme accompagnement frites");
+                    break;
+                case 3:
+                    System.out.println("Vous avez choisi comme accompagnement riz");
+                    break;
+                default:
+                    System.out.println("Vous n'avez pas choisi d'accompagnement...");
+                    break;
+            }
+        } else {
+            switch (nbSide){
+                case 1:
+                    System.out.println("Vous avez choisi comme accompagnement riz");
+                    break;
+                case 2:
+                    System.out.println("Vous avez choisi comme accompagnement pas de riz");
+                    break;
+                default:
+                    System.out.println("Vous n'avez pas choisi d'accompagnement...");
+                    break;
+            }
+        }
     }
 }
