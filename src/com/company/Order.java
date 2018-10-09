@@ -1,5 +1,8 @@
 package com.company;
 
+// On charge la class Scanner pour qu'elle soit utilisée
+import java.util.Scanner;
+
 // Le nom du fichier (.java) doit être identique à celui de cette class
 public class Order {
 
@@ -49,5 +52,18 @@ public class Order {
                 break;
         }
 
+    }
+
+    // S'occupe de demander le menu à l'utilisateur
+    public void runMenu() {
+        // vu que nous sommes déjà dans la class Order this permet d'utiliser l'objet directement sans devoir créer une nouvelle variable avec new Order()
+        this.displayAvailableMenu();
+        // Même principe qu'au dessus
+        // System.in permets de récupérer la saisie utilisateur
+        Scanner sc = new Scanner(System.in);
+        // La méthode nextInt() permets de demander à l'utilisateur un entier
+        int nb = sc.nextInt();
+        // Et là on appelle la méthode displaySelectedMenu() et on donne en argument la valeur de la variable saisie par  l'utilisateur
+        this.displaySelectedMenu(nb);
     }
 }

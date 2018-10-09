@@ -1,15 +1,11 @@
 
 package com.company;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
+        // On crée une variable objet order qui pourra utiliser les différentes méthodes de la class Order
         Order order = new Order();
-        order.displayAvailableMenu();
-        Scanner sc = new Scanner(System.in);
-        int nb = sc.nextInt();
-        order.displaySelectedMenu(nb);
+        order.runMenu();
     }
 }
