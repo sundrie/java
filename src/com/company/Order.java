@@ -103,4 +103,24 @@ public class Order {
             }
         }
     }
+
+    // Affiche les boissons choisies
+    // nbDrink correspond au chiffre de la boisson choisie
+    public void displaySelectedDrink(int nbDrink) {
+        switch (nbDrink) {
+            case 1:
+                System.out.println("Vous avez choisi en boisson de l'eau plate");
+                break;
+            case 2:
+                System.out.println("Vous avez choisi en boisson de l'eau gazeuse");
+                break;
+            case 3:
+                System.out.println("Vous avez choisi en boisson du Nuka Cola");
+                break;
+            default:
+                System.out.println("Vous n'avez pas choisi de boisson...");
+                break;
+        }
+
+    }
 }
