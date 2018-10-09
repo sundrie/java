@@ -19,6 +19,6 @@ public class Order {
     // Affiche le menu choisi par l'utilisateur
     // le nbMenu (paramètre de fonction) correspond au chiffre du menu
     public void displaySelectedMenu(int nbMenu){
-        
+        System.out.println("Vous avez choisi le menu "+nbMenu);
     }
 }
