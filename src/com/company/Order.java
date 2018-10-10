@@ -6,28 +6,76 @@ import java.util.Scanner;
 // Le nom du fichier (.java) doit être identique à celui de cette class
 public class Order {
 
+    // System.in permets de récupérer la saisie utilisateur
+    Scanner sc = new Scanner(System.in);
+
     // S'occupe de demander le menu à l'utilisateur
     public void runMenu() {
         // vu que nous sommes déjà dans la class Order this permet d'utiliser l'objet directement sans devoir créer une nouvelle variable avec new Order()
         this.displayAvailableMenu();
         // Même principe qu'au dessus
-        // System.in permets de récupérer la saisie utilisateur
-        Scanner sc = new Scanner(System.in);
         // La méthode nextInt() permets de demander à l'utilisateur un entier
         int nb = sc.nextInt();
         // Et là on appelle la méthode displaySelectedMenu() et on donne en argument la valeur de la variable saisie par  l'utilisateur
         this.displaySelectedMenu(nb);
-        // On appelle la méthode pour choisir son accompagnement
-        this.displayAvailableSide();
-        // Pas besoin de recréer une nouvelle variable autant reprendre celle crée plus haut
-        nb = sc.nextInt();
-        // Et on affiche ce qui a été choisi
-        this.displaySelectedSide(nb, true);
-        // On appelle la méthode pour choisir sa boisson
-        this.displayAvailableDrink();
-        nb = sc.nextInt();
-        // Et on affiche ce qui a été choisi
-        this.displaySelectedDrink(nb);
+
+        // On fait un switch car selon le menu les accompagnements changent
+        switch (nb) {
+            // Pour le menu Poulet
+            case 1 :
+                // On appelle la méthode pour choisir son accompagnement
+                this.displayAvailableSide(true);
+                // Pas besoin de recréer une nouvelle variable autant reprendre celle crée plus haut
+                nb = sc.nextInt();
+                // Et on affiche ce qui a été choisi
+                this.displaySelectedSide(nb, true);
+                // On appelle la méthode pour choisir sa boisson
+                this.displayAvailableDrink();
+                nb = sc.nextInt();
+                // Et on affiche ce qui a été choisi
+                this.displaySelectedDrink(nb);
+                break;
+            // Pour le menu Boeuf
+            case 2:
+                this.displayAvailableSide(true);
+                nb = sc.nextInt();
+                this.displaySelectedSide(nb, true);
+                break;
+            // Pour le menu Vegan
+            case 3:
+                this.displayAvailableSide(false);
+                nb = sc.nextInt();
+                this.displaySelectedSide(nb, false);
+                this.displayAvailableDrink();
+                nb = sc.nextInt();
+                this.displaySelectedDrink(nb);
+                break;
+        }
+    }
+
+    // Si plusieurs menus sont à faire
+    public void runMenus() {
+        System.out.println("Bonjour combien de menu il vous faut ?");
+        int nbCommandes = sc.nextInt();
+        // Pour éviter le troll de ce qui mettrait 0 commandes pour bloquer le programme
+        if (nbCommandes > 0) {
+            int i = 1;
+            // leftTodo c'est juste pour indiquer combien de commandes il reste à faire
+            int leftTodo = 0;
+            while (i <= nbCommandes) {
+                this.runMenu();
+                leftTodo = nbCommandes - i;
+
+                if (leftTodo == 0){
+                    System.out.println("Commande n° " + i + " faite c'est terminé !");
+                } else {
+                    System.out.println("Commande n° " + i + " faite encore " + leftTodo + " à traiter");
+                }
+                i++;
+            }
+        } else {
+            System.out.println("Dans ce cas au revoir");
+        }
 
     }
 
@@ -46,11 +94,16 @@ public class Order {
         System.out.println("Que souhaitez vous comme menu ?");
     }
 
-    public void displayAvailableSide(){
+    public void displayAvailableSide(boolean allSideEnable){
         System.out.println("Choix de l'accompagnement");
-        System.out.println("1 - légumes frais");
-        System.out.println("2 - frites");
-        System.out.println("3 - riz");
+        if (allSideEnable) {
+            System.out.println("1 - légumes frais");
+            System.out.println("2 - frites");
+            System.out.println("3 - riz");
+        } else {
+            System.out.println("1 - riz");
+            System.out.println("2 - pas de riz");
+        }
         System.out.println("Quel accompagnement avec votre menu ?");
     }
 
