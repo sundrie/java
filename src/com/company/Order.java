@@ -17,6 +17,12 @@ public class Order {
         int nb = sc.nextInt();
         // Et là on appelle la méthode displaySelectedMenu() et on donne en argument la valeur de la variable saisie par  l'utilisateur
         this.displaySelectedMenu(nb);
+        // On appelle la méthode pour choisir son accompagnement
+        this.displayAvailableSide();
+        // Pas besoin de recréer une nouvelle variable autant reprendre celle crée plus haut
+        nb = sc.nextInt();
+        // Et on affiche ce qui a été choisi
+        this.displaySelectedSide(nb, true);
     }
 
     // Les variables des différents menu, je les déclare ici pour que displaySelectedMenu() puisse les utiliser
@@ -32,6 +38,14 @@ public class Order {
         System.out.println("2 - " + menu2);
         System.out.println("3 - " + menu3);
         System.out.println("Que souhaitez vous comme menu ?");
+    }
+
+    public void displayAvailableSide(){
+        System.out.println("Choix de l'accompagnement");
+        System.out.println("1 - légumes frais");
+        System.out.println("2 - frites");
+        System.out.println("3 - riz");
+        System.out.println("Quel accompagnement avec votre menu ?");
     }
 
     // Affiche le menu choisi par l'utilisateur
